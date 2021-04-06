@@ -117,7 +117,47 @@ With kube-aws we can create, upgrade and destroy Kubernetes clusters on AWS from
 https://github.com/kubernetes-incubator/kube-aws
 
 
+<b>Требования для запуска Minikube</b>
 
+Minikube use https://github.com/docker/machine/tree/master/libmachine
 
+kubeadm
 
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+
+Below we outline the requirements to run Minikube on our local workstation: 
+
+VT-x/AMD-v virtualization must be enabled on the local workstation in BIOS, and/or verify if virtualization is supported by your workstation's OS.
+
+kubectl
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl/
+
+kubectl is a binary used to access and manage any Kubernetes cluster. It is installed through Minikube and accessed through the minikube command, or it can be installed separately. We will explore kubectl in more detail in future chapters.
+Type-2 Hypervisor or Container Runtime
+On Linux VirtualBox, https://www.virtualbox.org/wiki/Downloads
+
+KVM2 https://www.linux-kvm.org/page/Main_Page
+
+or Docker and Podman runtimes
+
+On macOS VirtualBox, https://www.virtualbox.org/wiki/Downloads
+
+HyperKit, https://github.com/moby/hyperkit
+
+VMware Fusion, http://www.vmware.com/products/fusion.html
+
+Parallels https://minikube.sigs.k8s.io/docs/drivers/parallels/  or Docker runtime
+
+On Windows VirtualBox, Hyper-V, or Docker runtime.
+
+Minikube supports a --driver=none (on Linux) option that runs the Kubernetes components directly on the host OS and not inside a VM. With this option a Docker installation is required and a Linux OS on the local workstation, but no hypervisor installation. If you use --driver=none in Debian or its derivatives, be sure to download .deb Docker packages instead of the snap package which does not work with Minikube. In addition to hypervisors, Minikube also supports a limited number of container runtimes, with the --driver=docker (on Linux, macOS, and Windows) and --driver=podman (on Linux) options, to install and run the Kubernetes cluster on top of a container runtime. 
+
+https://minikube.sigs.k8s.io/docs/
+
+https://kubernetes.io/docs/setup/learning-environment/minikube/
+
+https://github.com/kubernetes/minikube
+
+<b>Установка Minikube в Linux</b>
 
