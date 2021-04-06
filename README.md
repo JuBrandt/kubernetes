@@ -20,3 +20,16 @@ Node Agent
 
 Proxy.
 
+
+A worker node has the following components:
+
+Container Runtime
+
+Node Agent - kubelet
+
+Proxy - kube-proxy
+
+Addons for DNS, Dashboard user interface, cluster-level monitoring and logging.
+
+
+
