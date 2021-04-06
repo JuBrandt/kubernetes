@@ -194,4 +194,46 @@ We can start Minikube with the minikube start command, that bootstraps a single-
 
 $ minikube start
 
+😄  minikube v1.13.1 on Ubuntu 18.04
+✨  Automatically selected the virtualbox driver
+💿  Downloading VM boot image ...
+    > minikube-v1.13.1.iso.sha256: 65 B / 65 B [-------------] 100.00% ? p/s 0s
+    > minikube-v1.13.1.iso: 173.91 MiB / 173.91 MiB [] 100.00% 26.59 MiB p/s 6s
+👍  Starting control plane node minikube in cluster minikube
+💾  Downloading Kubernetes v1.19.2 preload ...
+    > preloaded-images-k8s-v6-v1.19.2-docker-overlay2-amd64.tar.lz4: 486.36 MiB
+🔥  Creating virtualbox VM (CPUs=2, Memory=3900MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.19.2 on Docker 19.03.12 ...
+🔎  Verifying Kubernetes components...
+🌟  Enabled addons: default-storageclass, storage-provisioner
+💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" by default
+
+<b>Check the status</b>
+
+With the minikube status command, we display the status of Minikube:
+
+$ minikube status
+
+minikube
+
+type: Control Plane
+
+host: Running
+
+kubelet: Running
+
+apiserver: Running
+
+kubeconfig: Configured
+
+Stop Minikube
+
+With the minikube stop command, we can stop Minikube:
+
+$ minikube stop
+
+Stopping node "minikube"  ...
+
+1 nodes stopped.
 
