@@ -69,13 +69,52 @@ Kind - multi-node Kubernetes cluster deployed in Docker containers acting as Kub
 Docker Desktop - including a local Kubernetes cluster for Docker users. https://www.docker.com/products/docker-desktop
 
 MicroK8s - local and cloud Kubernetes cluster, from Canonical. https://microk8s.io/
+
 K3S - lightweight Kubernetes cluster for local, cloud, edge, IoT deployments, from Rancher. https://k3s.io/
 
+<B>Локальная установка</B>
+
+Kubernetes can be installed on-premise on VMs and bare metal.
+
+On-Premise VMs
+
+Kubernetes can be installed on VMs created via Vagrant, VMware vSphere, KVM, or another Configuration Management (CM) tool in conjunction with a hypervisor software. There are different tools available to automate the installation, such as Ansible https://kubernetes.io/blog/2019/03/15/kubernetes-setup-using-ansible-and-vagrant/ or kubeadm. https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
+
+On-Premise Bare Metal
+
+Kubernetes can be installed on on-premise bare metal, on top of different operating systems, like RHEL, CoreOS, CentOS, Fedora, Ubuntu, etc. Most of the tools used to install Kubernetes on VMs can be used with bare metal installations as well. 
 
 
+kubeadm 
+
+kubeadm is a first-class citizen on the Kubernetes ecosystem. It is a secure and recommended method to bootstrap a multi-node production ready Highly Available Kubernetes cluster, on-prem or in the cloud. Kubeadm can also bootstrap a single-node cluster for learning. It has a set of building blocks to setup the cluster, but it is easily extendable to add more features. Please note that kubeadm does not support the provisioning of hosts. 
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
 
 
+kubespray
 
+With kubespray (formerly known as kargo), we can install Highly Available production ready Kubernetes clusters on AWS, GCE, Azure, OpenStack, vSphere, or bare metal. Kubespray is based on Ansible, and is available on most Linux distributions. It is a Kubernetes Incubator project. 
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubespray/
+
+https://github.com/kubernetes-sigs/kubespray
+
+
+kops
+
+With kops, we can create, upgrade, and maintain production-grade, Highly Available Kubernetes clusters from the command line. It can provision the machines as well. Currently, AWS is officially supported. Support for GCE and OpenStack is in beta, VMware vSphere is in alpha support, and other platforms are planned for the future. Explore the kops project for more details. 
+
+
+https://kubernetes.io/docs/setup/production-environment/tools/kops/
+
+https://github.com/kubernetes/kops
+
+kube-aws
+
+With kube-aws we can create, upgrade and destroy Kubernetes clusters on AWS from the command line. Kube-aws is also a Kubernetes Incubator project. 
+
+https://github.com/kubernetes-incubator/kube-aws
 
 
 
