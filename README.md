@@ -1,7 +1,7 @@
 # kubernetes
 
 
-A master node runs the following control plane components:
+<b>A master node runs the following control plane components:</b>
 
 API Server
 
@@ -21,7 +21,7 @@ Node Agent
 Proxy.
 
 
-A worker node has the following components:
+<b>A worker node has the following components:</b>
 
 Container Runtime
 
