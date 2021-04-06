@@ -47,16 +47,29 @@ The kubelet connects to container runtimes though a plugin based interface - the
 
 
 <b>Связь между модулями между узлами</b>
+
 https://github.com/containernetworking/cni
+
 https://github.com/containernetworking/cni#3rd-party-plugins
+
 https://github.com/containernetworking/plugins#plugins
 
 https://github.com/coreos/flannel/
+
 https://www.weave.works/oss/net/
+
 https://www.projectcalico.org/
 
 https://kubernetes.io/docs/concepts/cluster-administration/networking/
 
+Minikube - single-node local Kubernetes cluster, recommended for a learning environment deployed on a single host. https://minikube.sigs.k8s.io/docs/
+
+Kind - multi-node Kubernetes cluster deployed in Docker containers acting as Kubernetes nodes, recommended for a learning environment. https://kind.sigs.k8s.io/docs/
+
+Docker Desktop - including a local Kubernetes cluster for Docker users. https://www.docker.com/products/docker-desktop
+
+MicroK8s - local and cloud Kubernetes cluster, from Canonical. https://microk8s.io/
+K3S - lightweight Kubernetes cluster for local, cloud, edge, IoT deployments, from Rancher. https://k3s.io/
 
 
 
