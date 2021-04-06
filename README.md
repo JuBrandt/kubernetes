@@ -328,3 +328,133 @@ $ minikube stop
 Stopping node "minikube"  ...
 
 1 nodes stopped.
+
+
+<b>Установка Minikube в Windows</b>
+
+Let's learn how to install the latest Minikube release on Windows 10 with VirtualBox v6.1 specifically.
+
+NOTE: For other OS, VirtualBox, and Minikube versions, the installation steps may vary! Check the Minikube installation!
+
+Verify the virtualization support on your Windows system (multiple output lines ending with 'Yes' indicate supported virtualization):
+
+PS C:\WINDOWS\system32> systeminfo
+
+Install the VirtualBox hypervisor for 'Windows hosts'
+Download and install the .exe package.
+
+NOTE: You may need to disable Hyper-V on your Windows host (if previously installed and used) while running VirtualBox.
+
+Install Minikube
+We can download the latest release or a specific release from the Minikube release page. Once downloaded, we need to make sure it is added to our PATH.
+
+There are two .exe packages available to download for Windows found under a Minikube release:
+
+minikube-windows-amd64.exe which requires to be added to the PATH: manually
+minikube-installer.exe which automatically adds the executable to the PATH. 
+Let's download and install the latest minikube-installer.exe package. 
+
+Start Minikube
+We can start Minikube using the minikube start command, that bootstraps a single-node cluster with the latest stable Kubernetes version release. For a specific Kubernetes version the --kubernetes-version option can be used as such minikube start --kubernetes-version v1.19.0 (where latest is default and acceptable version value, and stable is also acceptable). Open the PowerShell using the Run as Administrator option and execute the following command:
+
+PS C:\WINDOWS\system32> minikube start
+
+😄  minikube v1.13.1 on Windows 10
+✨  Automatically selected the virtualbox driver
+💿  Downloading VM boot image ...
+👍  Starting control plane node minikube in cluster minikube
+💾  Downloading Kubernetes v1.19.2 preload ...
+🔥  Creating virtualbox VM (CPUs=2, Memory=3900MB, Disk=20000MB) ...
+🐳  Preparing Kubernetes v1.19.2 on Docker 19.03.12 ...
+🔎  Verifying Kubernetes components...
+🌟  Enabled addons: default-storageclass, storage-provisioner
+💡  kubectl not found. If you need it, try: 'minikube kubectl -- get pods -A'
+🏄  Done! kubectl is now configured to use "minikube" by default
+
+Check the status
+We can see the status of Minikube using the minikube status command. Open the PowerShell using the Run as Administrator option and execute the following command:
+
+PS C:\WINDOWS\system32> minikube status
+
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+Stop Minikube
+We can stop Minikube using the minikube stop command. Open the PowerShell using the Run as Administrator option and execute the following command:
+
+PS C:\WINDOWS\system32> minikube stop
+
+Stopping node "minikube"  ...
+1 nodes stopped.
+
+
+
+<b>Minikube CRI-O</b>
+
+According to the CRI-O website,
+
+"CRI-O is an implementation of the Kubernetes CRI (Container Runtime Interface) to enable using OCI (Open Container Initiative) compatible runtimes."
+
+Start Minikube with CRI-O as container runtime, instead of Docker, with the following command:
+
+NOTE: While docker is the default runtime, minikube Kubernetes also supports cri-o and containerd. 
+
+$ minikube start --container-runtime cri-o
+
+😄  minikube v1.13.1 on Ubuntu 18.04
+
+✨  Automatically selected the virtualbox driver
+
+💿  Downloading VM boot image ...
+
+👍  Starting control plane node minikube in cluster minikube
+
+💾  Downloading Kubernetes v1.19.2 preload ...
+
+    > preloaded-images-k8s-v6-v1.19.2-cri-o-overlay-amd64.tar.lz4: 551.15 MiB /
+    > 
+🔥  Creating virtualbox VM (CPUs=2, Memory=3900MB, Disk=20000MB) ...
+
+🐳  Preparing Kubernetes v1.19.2 on CRI-O 1.17.3 ...
+
+🔗  Configuring bridge CNI (Container Network Interface) ...
+
+🔎  Verifying Kubernetes components...
+
+🌟  Enabled addons: default-storageclass, storage-provisioner
+
+🏄  Done! kubectl is now configured to use "minikube" by default
+
+By describing a running Kubernetes pod, we can extract the Container ID field of the pod that includes the name of the runtime:
+
+$ kubectl -n kube-system describe pod kube-scheduler-minikube | grep "Container ID"
+
+
+    Container ID:  cri-o://1090869caeea44cb179d31b70ba5b6de...
+    
+
+Let's login via ssh into the Minikube's VM:
+
+$ minikube ssh
+
+NOTE: If you try to list containers using the docker command, it will not produce any results, because Docker is not running our containers at this time:
+
+$ sudo docker container ls
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+List the containers created by the CRI-O container runtime and extract the container manager from the config file:
+
+$ sudo runc list
+
+ID                                                                 PID         STATUS       BUNDLE                                                                                 CREATED                          OWNER 
+1090869caeea44cb179d31b70ba5b6de96f10a8a5f4286536af5dac1c4312030   3661        running     /run/containers/storage/overlay-containers/1090869caeea44cb179d31b70ba5b6de96f10a8a5f4286536af5dac1c4312030/userdata   2020-10-11T02:26:03.675763329Z   root
+1e9f8dce6d535b67822e744204098060ff92e574780a1809adbda48ad8605d06   3614        running     /run/containers/storage/overlay-containers/1e9f8dce6d535b67822e744204098060ff92e574780a1809adbda48ad8605d06/userdata   2020-10-11T02:25:21.650715545Z   root
+1edcfc78bca52be153cc9f525d9fc64be75ccea478897004a5032f37c6c4c9dc   3812        running     /run/containers/storage/overlay-containers/1edcfc78bca52be153cc9f525d9fc64be75ccea478897004a5032f37c6c4c9dc/userdata   2020-10-11T02:25:33.468528462Z   root
+...
+
+$ sudo cat /run/containers/storage/overlay-containers/1090869caeea44cb179d31b70ba5b6de96f10a8a5f4286536af5dac1c4312030/userdata/config.json | grep manager
+
+ "io.container.manager": "cri-o",
