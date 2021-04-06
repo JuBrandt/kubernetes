@@ -458,3 +458,20 @@ ID                                                                 PID         S
 $ sudo cat /run/containers/storage/overlay-containers/1090869caeea44cb179d31b70ba5b6de96f10a8a5f4286536af5dac1c4312030/userdata/config.json | grep manager
 
  "io.container.manager": "cri-o",
+ 
+ <b>Установка и настройка kubeadm</b>
+ 
+ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+ 
+ <b>Создание кластера с помощью kubeadm</b>
+ 
+ 
+ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/create-cluster-kubeadm/
+ 
+ 
+ <b>Устранение неполадок kubeadm</b>
+ 
+ https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/troubleshooting-kubeadm/
+ 
+ 
+ 
