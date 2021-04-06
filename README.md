@@ -159,5 +159,14 @@ https://kubernetes.io/docs/setup/learning-environment/minikube/
 
 https://github.com/kubernetes/minikube
 
-<b>Установка Minikube в Linux</b>
+<b>Установка Minikube в Linux, Ubuntu Linux 18.04 LTS with VirtualBox v6.1</b>
+
+https://kubernetes.io/docs/tasks/tools/install-minikube/
+
+Verify the virtualization support on your Linux OS (a non-empty output indicates supported virtualization):
+
+
+$ grep -E --color 'vmx|svm' /proc/cpuinfo
+
+
 
