@@ -91,6 +91,8 @@ kubeadm is a first-class citizen on the Kubernetes ecosystem. It is a secure and
 
 https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/
 
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
+
 
 kubespray
 
